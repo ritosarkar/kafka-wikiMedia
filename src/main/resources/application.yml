@@ -1,0 +1,25 @@
+spring:
+  application:
+    name: kafkaWikimedia
+  kafka:
+    # Global settings
+    bootstrap-servers: 127.0.0.1:9092
+    #consumer:
+      # Group ID helps share message load among multiple instances
+      #group-id: my-java-application
+      # 'earliest' ensures no data is missed if the consumer starts late
+      #auto-offset-reset: earliest
+    topic: wikimedia.recentchange
+    streamUrl: https://stream.wikimedia.org/v2/stream/recentchange
+
+
+server:
+  #port: 0
+  #if we want spring to choose random port
+  # we need this type of configuration for running multiple instances of spring
+  # application in same machine
+  port: 8082
+  shutdown: graceful
+
+
+
