@@ -33,9 +33,9 @@ public class WikiMediaProducerService {
                                 .connectTimeout(10, TimeUnit.MINUTES)
                         )
                 );
-        try (BackgroundEventSource eventSource = backGroundEventSource.build()) {
-            eventSource.start();
-        }
+        BackgroundEventSource eventSource = backGroundEventSource.build();
+        eventSource.start();
+
         TimeUnit.SECONDS.sleep(10);
     }
 }
