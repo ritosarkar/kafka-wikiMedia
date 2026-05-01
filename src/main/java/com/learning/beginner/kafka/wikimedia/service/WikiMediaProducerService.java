@@ -25,15 +25,19 @@ public class WikiMediaProducerService {
     private final WikiMediaProducerHandler wikiMediaProducerHandler;
 
     public void startStreaming() throws InterruptedException{
-        log.info("Running post instruction...");
-        BackgroundEventSource.Builder backGroundEventSource=
+        /*BackgroundEventSource.Builder backGroundEventSource=
                 new BackgroundEventSource.Builder(wikiMediaProducerHandler,
                         new EventSource.Builder( ConnectStrategy.http(URI.create(appConfiguration.getStreamUrl()))
                                 .header("user-agent","kafka-stream")
                                 .connectTimeout(30, TimeUnit.SECONDS)
                         )
-                );
-        BackgroundEventSource eventSource = backGroundEventSource.build();
+                );*/
+        BackgroundEventSource eventSource = new BackgroundEventSource.Builder(wikiMediaProducerHandler,
+                new EventSource.Builder( ConnectStrategy.http(URI.create(appConfiguration.getStreamUrl()))
+                        .header("user-agent","kafka-stream")
+                        .connectTimeout(30, TimeUnit.SECONDS)
+                )
+        ).build();
         eventSource.start();
     }
 }
