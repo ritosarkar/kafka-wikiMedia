@@ -12,6 +12,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.util.concurrent.TimeUnit;
 
 
 @Component
@@ -42,9 +43,10 @@ public class WikiMediaProducerHandler implements BackgroundEventHandler {
     }
 
     @Override
-    public void onMessage(String s, MessageEvent messageEvent) {
-        log.info("Handling event {} ; content {} will be processed.", s, messageEvent.getData());
+    public void onMessage(String s, MessageEvent messageEvent) throws InterruptedException {
+        log.info("Handling event===> \n{} \n<-----content------> \n{} \nwill be processed.", s, messageEvent.getData());
         kafkaProducer.send(new ProducerRecord<>(wikimediaTopic, messageEvent.getData()));
+        TimeUnit.SECONDS.sleep(10);
     }
 
     @Override

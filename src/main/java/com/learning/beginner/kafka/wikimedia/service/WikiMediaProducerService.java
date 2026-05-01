@@ -30,12 +30,10 @@ public class WikiMediaProducerService {
                 new BackgroundEventSource.Builder(wikiMediaProducerHandler,
                         new EventSource.Builder( ConnectStrategy.http(URI.create(appConfiguration.getStreamUrl()))
                                 .header("user-agent","kafka-stream")
-                                .connectTimeout(10, TimeUnit.MINUTES)
+                                .connectTimeout(30, TimeUnit.SECONDS)
                         )
                 );
         BackgroundEventSource eventSource = backGroundEventSource.build();
         eventSource.start();
-
-        TimeUnit.SECONDS.sleep(10);
     }
 }
