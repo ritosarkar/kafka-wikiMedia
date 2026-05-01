@@ -3,7 +3,7 @@ spring:
     name: kafkaWikimedia
   kafka:
     # Global settings
-    bootstrap-servers: 127.0.0.1:9092
+    bootstrap-servers: localhost:9092
     #consumer:
       # Group ID helps share message load among multiple instances
       #group-id: my-java-application
