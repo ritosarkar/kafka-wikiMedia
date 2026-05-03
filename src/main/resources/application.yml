@@ -4,13 +4,20 @@ spring:
   kafka:
     # Global settings
     bootstrap-servers: localhost:9092
-    #consumer:
+      #consumer:
       # Group ID helps share message load among multiple instances
       #group-id: my-java-application
       # 'earliest' ensures no data is missed if the consumer starts late
-      #auto-offset-reset: earliest
+    #auto-offset-reset: earliest
     topic: wikimedia.recentchange
     streamUrl: https://stream.wikimedia.org/v2/stream/recentchange
+    # If kafka version is <=2.8 then we have to configure below properties -
+    #enable-idempotence: true
+    #acknowledgements: all
+    lingerMs: 20
+    batchSize: 32768 #this is 32kb; 32*1024
+    compressionType: snappy
+
 
 
 server:

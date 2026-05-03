@@ -12,7 +12,14 @@ import java.util.List;
 @Configuration
 @ConfigurationProperties(prefix = "spring.kafka")
 public class AppConfiguration {
-    private String  bootstrapServers;
+    private String bootstrapServers;
     private List<String> topic;
     private String streamUrl;
+    /*If kafka version is <=2.8 then we have to configure below properties -
+    private String enableIdempotence;
+    private String acknowledgements;
+     */
+    private String lingerMs;
+    private String batchSize;
+    private String compressionType;
 }
