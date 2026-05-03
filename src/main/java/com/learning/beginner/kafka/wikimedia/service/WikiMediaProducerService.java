@@ -22,7 +22,7 @@ public class WikiMediaProducerService {
     private final AppConfiguration appConfiguration;
     private final WikiMediaProducerHandler wikiMediaProducerHandler;
 
-    public void startStreaming() throws InterruptedException {
+    public void startStreaming(){
         /*BackgroundEventSource.Builder backGroundEventSource=
                 new BackgroundEventSource.Builder(wikiMediaProducerHandler,
                         new EventSource.Builder( ConnectStrategy.http(URI.create(appConfiguration.getStreamUrl()))
