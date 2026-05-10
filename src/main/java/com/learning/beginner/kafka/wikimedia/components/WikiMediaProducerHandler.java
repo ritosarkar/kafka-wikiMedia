@@ -46,7 +46,7 @@ public class WikiMediaProducerHandler implements BackgroundEventHandler {
     public void onMessage(String s, MessageEvent messageEvent) throws InterruptedException {
         log.info("Handling event===> \n{} \n<-----content------> \n{} \nwill be processed.", s, messageEvent.getData());
         kafkaProducer.send(new ProducerRecord<>(wikimediaTopic, messageEvent.getData()));
-        TimeUnit.SECONDS.sleep(10);
+        TimeUnit.SECONDS.sleep(3);
     }
 
     @Override
